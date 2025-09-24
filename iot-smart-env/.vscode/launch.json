@@ -1,0 +1,100 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Frontend: Chrome (Vite)",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:5173",
+      "webRoot": "${workspaceFolder}/frontend/dashboard",
+      "presentation": {
+        "group": "web",
+        "order": 1
+      }
+    },
+    {
+      "name": "Frontend: Edge (Vite)",
+      "type": "msedge",
+      "request": "launch",
+      "url": "http://localhost:5173",
+      "webRoot": "${workspaceFolder}/frontend/dashboard",
+      "presentation": {
+        "group": "web",
+        "order": 2
+      }
+    },
+    {
+      "name": "Backend: FastAPI (uvicorn, no-reload)",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "uvicorn",
+      "args": [
+        "app.main:app",
+        "--host",
+        "0.0.0.0",
+        "--port",
+        "8000"
+      ],
+      "cwd": "${workspaceFolder}/edge",
+      "envFile": "${workspaceFolder}/.env",
+      "justMyCode": true,
+      "console": "integratedTerminal",
+      "presentation": {
+        "group": "api",
+        "order": 1
+      }
+    },
+    {
+      "name": "Backend: FastAPI (uvicorn --reload)",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "uvicorn",
+      "args": [
+        "app.main:app",
+        "--host",
+        "0.0.0.0",
+        "--port",
+        "8000",
+        "--reload",
+        "--reload-dir",
+        "app"
+      ],
+      "cwd": "${workspaceFolder}/edge",
+      "envFile": "${workspaceFolder}/.env",
+      "justMyCode": true,
+      "subProcess": true,
+      "console": "integratedTerminal",
+      "presentation": {
+        "group": "api",
+        "order": 2
+      }
+    },
+    {
+      "name": "Vite Dev Server (Node, optional)",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/frontend/dashboard/node_modules/vite/bin/vite.js",
+      "cwd": "${workspaceFolder}/frontend/dashboard",
+      "runtimeArgs": [
+        "--enable-source-maps"
+      ],
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "presentation": {
+        "group": "web",
+        "order": 0
+      }
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Run All: Edge + Vite + Chrome",
+      "configurations": [
+        "Backend: FastAPI (uvicorn --reload)",
+        "Vite Dev Server (Node, optional)",
+        "Frontend: Chrome (Vite)"
+      ]
+    }
+  ]
+}
