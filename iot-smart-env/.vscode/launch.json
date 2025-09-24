@@ -92,8 +92,7 @@
       "name": "Run All: Edge + Vite + Chrome",
       "configurations": [
         "Backend: FastAPI (uvicorn --reload)",
-        "Vite Dev Server (Node, optional)",
-        "Frontend: Chrome (Vite)"
+        "Vite Dev Server (Node, optional)"
       ]
     }
   ]
